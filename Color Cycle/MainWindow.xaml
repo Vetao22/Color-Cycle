@@ -1,0 +1,74 @@
+﻿<Window x:Class="Color_Cycle.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Color_Cycle"
+        mc:Ignorable="d"
+        Title="Color Cycle" Height="450" Width="800" WindowState="Maximized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle x:Name="rectMain" Grid.Column="0" Margin="5" Fill="Blue" Stroke="Black" StrokeThickness="2"/>
+
+        <Grid Grid.Column="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="R: "/>
+            <TextBox x:Name="txtR" Grid.Row="0" Grid.Column="1" MinWidth="24" MaxHeight="17" MaxLength="3"
+                     VerticalContentAlignment="Center" TextChanged="TextBox_RGB_Changed"
+                     Text="{Binding ElementName=SliderR, Path=Value}"/>
+            <Slider x:Name="SliderR" Grid.Row="0" Grid.Column="2" Minimum="0" Maximum="255" Margin="5 4 0 0"
+                    MinWidth="100" Value="{Binding ElementName=txtR, Path=Text}" LargeChange="0" IsSnapToTickEnabled="True"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="G: "/>
+            <TextBox x:Name="txtG" Grid.Row="1" Grid.Column="1" MinWidth="24" MaxHeight="17" MaxLength="3"
+                     VerticalContentAlignment="Center" TextChanged="TextBox_RGB_Changed"/>
+            <Slider x:Name="SliderG" Grid.Row="1" Grid.Column="2" Minimum="0" Maximum="255" Margin="5 4 0 0"
+                    MinWidth="100" Value="{Binding ElementName=txtG, Path=Text}" IsSnapToTickEnabled="True"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Content="B: "/>
+            <TextBox x:Name="txtB" Grid.Row="2" Grid.Column="1" MinWidth="24" MaxHeight="17" MaxLength="3"
+                     VerticalContentAlignment="Center" TextChanged="TextBox_RGB_Changed"/>
+            <Slider x:Name="SliderB" Grid.Row="2" Grid.Column="2" Minimum="0" Maximum="255" Margin="5 4 0 0"
+                    MinWidth="100" Value="{Binding ElementName=txtB, Path=Text}" IsSnapToTickEnabled="True"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Content="Interval (ms): "/>
+            <TextBox x:Name="txtInterval" Grid.Row="3" Grid.Column="1" MinWidth="24" MaxWidth="50" MaxHeight="17" 
+                     VerticalContentAlignment="Center" TextChanged="txtInterval_TextChanged" />
+
+            <Label Grid.Row="4" Grid.Column="0" Content="Increment: "/>
+            <TextBox x:Name="txtIncrement" Grid.Row="4" Grid.Column="1" MinWidth="24" MaxWidth="50" MaxLength="3"
+                     MaxHeight="17" VerticalContentAlignment="Center" TextChanged="txtIncrement_TextChanged" />
+
+            <StackPanel Grid.Row="4" Grid.Column="2" Orientation="Horizontal">
+                <Label Content="Random?  " VerticalAlignment="Center"/>
+                <CheckBox x:Name="chkRandom" IsChecked="False" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <Button x:Name="btnStart" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Content="Start" Margin="0 3 0 0"
+                    Click="btnStart_Click"/>
+
+            <Label Grid.Row="6" Grid.Column="0" Content="Initial Color:" FontWeight="DemiBold"/>
+            <Rectangle x:Name="rectInitialColor" Grid.Row="7" Grid.ColumnSpan="3" Stroke="Black" StrokeThickness="2"
+                       Fill="Blue" Height="{Binding ElementName=rectInitialColor, Path=ActualWidth}" />
+        </Grid>
+    </Grid>
+</Window>
